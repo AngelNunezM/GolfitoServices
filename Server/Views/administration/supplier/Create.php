@@ -12,6 +12,11 @@
             </svg>
             <span>Volver atras</span>
         </a>
+        <?php if (!empty($error ?? '')): ?>
+            <div class="rounded-lg border border-red-500 bg-red-500/10 p-3 text-sm text-red-200">
+                <?= htmlspecialchars($error) ?>
+            </div>
+        <?php endif; ?>
         <form class="flex flex-col gap-4">
             <div class="flex flex-col gap-4 border-2 border-dashed border-cyan-700 rounded-lg p-5">
                 <div class="flex flex-row items-center gap-2">
@@ -88,37 +93,37 @@
                     <div class="flex justify-between items-center bg-bprincipal-light p-2 px-4 rounded-lg">
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="lunes">L</label>
-                            <input id="lunes" type="checkbox" />
+                            <input id="lunes" type="checkbox" value="LUNES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="martes">M</label>
-                            <input id="martes" type="checkbox" />
+                            <input id="martes" type="checkbox" value="MARTES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="miercoles">X</label>
-                            <input id="miercoles" type="checkbox" />
+                            <input id="miercoles" type="checkbox" value="MIERCOLES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="jueves">J</label>
-                            <input id="jueves" type="checkbox" />
+                            <input id="jueves" type="checkbox" value="JUEVES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="viernes">V</label>
-                            <input id="viernes" type="checkbox" />
+                            <input id="viernes" type="checkbox" value="VIERNES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="sabado">S</label>
-                            <input id="sabado" type="checkbox" />
+                            <input id="sabado" type="checkbox" value="SABADO" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="domingo">D</label>
-                            <input id="domingo" type="checkbox" />
+                            <input id="domingo" type="checkbox" value="DOMINGO" />
                         </div>
                     </div>
                 </div>
@@ -128,37 +133,37 @@
                     <div class="flex justify-between items-center bg-bprincipal-light p-2 px-4 rounded-lg">
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="lunesE">L</label>
-                            <input id="lunesE" type="checkbox" />
+                            <input id="lunesE" type="checkbox" value="LUNES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="martesE">M</label>
-                            <input id="martesE" type="checkbox" />
+                            <input id="martesE" type="checkbox" value="MARTES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="miercolesE">X</label>
-                            <input id="miercolesE" type="checkbox" />
+                            <input id="miercolesE" type="checkbox" value="MIERCOLES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="juevesE">J</label>
-                            <input id="juevesE" type="checkbox" />
+                            <input id="juevesE" type="checkbox" value="JUEVES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="viernesE">V</label>
-                            <input id="viernesE" type="checkbox" />
+                            <input id="viernesE" type="checkbox" value="VIERNES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="sabadoE">S</label>
-                            <input id="sabadoE" type="checkbox" />
+                            <input id="sabadoE" type="checkbox" value="SABADO" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="domingoE">D</label>
-                            <input id="domingoE" type="checkbox" />
+                            <input id="domingoE" type="checkbox" value="DOMINGO" />
                         </div>
                     </div>
                 </div>

@@ -33,4 +33,21 @@ class CategorySupplierRepository
             );
         }, $rows);
     }
+
+    public function create(CategorySupplier $category): bool
+    {
+
+        $stmt = $this->context->prepare("
+            INSERT INTO categories_suppliers (id, name)
+            VALUES (:id, :name)
+        ");
+        $stmt->execute([
+            ':id' => $category->id,
+            ':name' => $category->name
+        ]);
+
+        if ($stmt->rowCount() === 0) return false;
+
+        return true;
+    }
 }

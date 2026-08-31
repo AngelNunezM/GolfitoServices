@@ -56,9 +56,6 @@ CREATE TABLE suppliers(
     business_name VARCHAR(200) NOT NULL,
     address VARCHAR(255) DEFAULT NULL,
     is_active BOOLEAN DEFAULT TRUE,
-
-    delivery_day DATE,
-    order_day DATE,
     
     method_payment_id CHAR(36) NOT NULL,
     FOREIGN KEY (method_payment_id) REFERENCES pay_methods(id),
@@ -68,6 +65,15 @@ CREATE TABLE suppliers(
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE days_supplier(
+    type ENUM('PEDIDO', 'ENTREGA') NOT NULL,
+    day ENUM('LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO') NOT NULL,
+    supplier_id CHAR(36) NOT NULL,
+    PRIMARY KEY (type, day, supplier_id),
+    FOREIGN KEY (supplier_id) REFERENCES suppliers(id)
+);
+
 
 CREATE TABLE contact_suppliers(
     id CHAR(36) PRIMARY KEY NOT NULL,

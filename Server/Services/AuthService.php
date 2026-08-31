@@ -22,7 +22,6 @@ class AuthService {
     public function authenticate(User $user): ?array
     {
         $isExistUser = $this->userRepository->findBy('username', $user->username);
-
         if(!$isExistUser || !password_verify($user->password, $isExistUser->password)) { 
             throw new Exception("Credenciales Invalidas.", 401);
         }

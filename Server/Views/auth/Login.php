@@ -4,11 +4,16 @@
             <img src="./assets/icons/icon.png" alt="Logo de El Golfito" class="w-24 invert">
         </figure>
         <div class=" flex justify-center items-center xs:w-11/12 sm:w-7/12 lg:w-4/12">
-            <form method="POST" action="login" class="flex flex-col gap-6 w-full">
+            <form method="POST" action="/login" class="flex flex-col gap-6 w-full">
                 <div class="flex flex-col gap-2">      
                     <h1 class="text-tprincipal font-semibold text-4xl">Inicia sesión con tus credenciales </h1>
                     <span class="text-tsecondary">Gestiona todas tus actividades dentro del restaurante "<a href="https://Elgolfito.mx/" target="_blank" class="font-medium text-tprincipal/70">El Golfito</a>".</span>
                 </div>
+                <?php if (!empty($error ?? '')): ?>
+                    <div class="rounded-lg border border-red-500 bg-red-500/10 p-3 text-sm text-red-200">
+                        <?= htmlspecialchars($error) ?>
+                    </div>
+                <?php endif; ?>
                 <div class="flex flex-col gap-4">
                     <div class="flex flex-col gap-2">
                         <label for="username" class="text-tsecondary text-sm">Usuario</label>

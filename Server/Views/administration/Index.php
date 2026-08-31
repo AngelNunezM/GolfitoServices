@@ -14,7 +14,7 @@
                 <h2 class="text-lg font-semibold">Almacén de productos</h2>
                 <p class="text-tsecondary text-sm">Gestiona tu almacén de productos.</p>
             </a>
-            <a class="flex flex-col bg-bprincipal-light rounded-lg p-5 hover:bg-bsecundario/80 transition-all" href="/administracion/almacen">
+            <a class="flex flex-col bg-bprincipal-light rounded-lg p-5 hover:bg-bsecundario/80 transition-all" href="/administracion/cuentas">
                 <h2 class="text-lg font-semibold">Cuentas de usuario</h2>
                 <p class="text-tsecondary text-sm">Gestiona la información de tus usuarios.</p>
             </a>

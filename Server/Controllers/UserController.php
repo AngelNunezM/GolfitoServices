@@ -48,7 +48,7 @@ class UserController {
 
     public function create(): void
     {
-        //Authentication::verify();
+        Authentication::verify();
         $request = $this->request();
 
         try {

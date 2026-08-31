@@ -22,6 +22,7 @@ require __DIR__ . '/ProfileRoute.php';
 require __DIR__ . '/AdministrationRoute.php';
 
 require __DIR__ . '/Supplier/SupplierRoute.php';
+require __DIR__ . '/Supplier/CategorySupplierRoute.php';
 require __DIR__ . '/Warehouse/WarehouseRoute.php';
 
 // ---------------------------------------------------------------------

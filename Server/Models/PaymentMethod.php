@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
+
 class PaymentMethod
 {
-    public ?string $id;
+    public ?UuidInterface $id;
     public string $name;
 
     public function __construct(
-        ?string $id = null,
+        ?UuidInterface $id = null,
         string $name = ''
     ) {
         $this->id = $id;

@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
+use Ramsey\Uuid\UuidInterface;
 use Ramsey\Uuid\Uuid;
 use App\Models\Role;
 
 class User {
-    public ?string $id = null;
+    public ?UuidInterface $id = null;
     public string $name = '';
     public string $username = '';
     public string $password = '';
     public string $phone = '';
     public bool $isActive = true;
-    public ?string $role_id = null;
+    public ?UuidInterface $role_id = null;
 
     public ?Role $role = null;
 
@@ -22,8 +23,8 @@ class User {
         string $password = '',
         string $phone = '',
         bool $isActive = true,
-        ?string $id = null,
-        ?string $role_id = null,
+        ?UuidInterface $id = null,
+        ?UuidInterface $role_id = null,
         ?Role $role = null
     ) {
        $this->id = $id;
@@ -36,9 +37,9 @@ class User {
        $this->role = $role;
     }
 
-    public static function create(string $name, string $username, string $password, string $phone, string $role_id): User{
+    public static function create(string $name, string $username, string $password, string $phone, UuidInterface $role_id): User{
         return new User(
-            id: Uuid::uuid4()->toString(),
+            id: Uuid::uuid4(),
             name: $name,
             username: $username,
             password: password_hash($password, PASSWORD_BCRYPT),

@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Config\ContextDB;
 use App\Models\User;
 use App\Models\Role;
+use Ramsey\Uuid\Uuid;
 use PDO;
 
 class UserRepository {
@@ -30,7 +31,7 @@ class UserRepository {
         
         return array_map(function($response) {
             return new User(
-                id: $response['id'],
+                id: Uuid::fromString($response['id']),
                 name: $response['name'],
                 username: $response['username'],
                 phone: $response['phone_number'],
@@ -45,7 +46,7 @@ class UserRepository {
         }, $responses);
     }
 
-    public function findBy(string $columnName, $value): ?User // Obtiene un usuario que coincida con la columna indicada
+    public function findBy(string $columnName, $value) 
     {
         $consult = $this->context->prepare("
             SELECT u.id, u.name, u.username, u.phone_number, u.password_hash, u.is_active, r.id as 'id_role', r.name as 'name_role'
@@ -63,25 +64,25 @@ class UserRepository {
         if (!$response) {
             return null; // No se encontró
         }
-
-        return new User(
-            id: $response['id'],
+        
+        $user = new User(
+            id: Uuid::fromString($response['id']),
             name: $response['name'],
             username: $response['username'],
             phone: $response['phone_number'],
             password: $response['password_hash'],
             isActive: $response['is_active'],
-            role_id: $response['id_role'],
+            role_id: Uuid::fromString($response['id_role']),
             role: new Role(
-                id: $response['id_role'],
+                id: Uuid::fromString($response['id_role']),
                 name: $response['name_role']
             )
         );
+        return $user;
     }
 
     public function add(User $user): string
     {
-        
         $consult = $this->context->prepare("INSERT INTO users(id, name, username, phone_number, password_hash, role_id) VALUES(:id, :name, :username, :phone_number, :password, :role_id)");
         $consult->execute([
             "id" => $user->id,
@@ -124,7 +125,7 @@ class UserRepository {
         return $this->context->lastInsertId();
     }
 
-    public function changeStatus(int $userId): bool
+    public function changeStatus(Uuid $userId): bool
     {
         $consult = $this->context->prepare("UPDATE users  SET is_active = NOT is_active  WHERE users.id = :UserId");
         $consult->execute([

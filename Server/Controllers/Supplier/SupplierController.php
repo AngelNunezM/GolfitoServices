@@ -10,20 +10,17 @@ use App\Services\Supplier\CategorySupplierService;
 use App\Services\PaymentMethodService;
 use App\Core\Helpers\HTTP;
 use Exception;
+use Ramsey\Uuid\Uuid;
 
 class SupplierController
 {
     use HTTP;
 
     private SupplierService $supplierService;
-    private PaymentMethodService $paymentMethodService;
-    private CategorySupplierService $categorySupplierService;
 
     public function __construct()
     {
         $this->supplierService = new SupplierService();
-        $this->paymentMethodService = new PaymentMethodService();
-        $this->categorySupplierService = new CategorySupplierService();
     }
 
     public function index()
@@ -42,9 +39,10 @@ class SupplierController
     public function create()
     {
         Authentication::verify();
+
         $params = [
-            'categories' => $this->categorySupplierService->getCategories(),
-            'payment_methods' => $this->paymentMethodService->getPaymentMethods()
+            'categories' => (new CategorySupplierService())->getCategories(),
+            'payment_methods' => (new PaymentMethodService())->getPaymentMethods()
         ];
 
         return View::render('administration/supplier/Create', $params);
@@ -64,10 +62,6 @@ class SupplierController
                 method_payment_id: $request['method_payment_id'] ?? null,
                 category_supplier_id: $request['category_supplier_id'] ?? null,
             );
-
-            if (empty($supplier->name) || empty($supplier->business_name)) {
-                throw new Exception('Nombre y razón social son obligatorios.', 422);
-            }
 
             $this->supplierService->createSupplier($supplier);
             $this->redirect('/administracion/proveedores');
@@ -98,7 +92,7 @@ class SupplierController
         try {
 
             $supplier = new Supplier(
-                id: $id,
+                id: Uuid::fromString($id),
                 name: $request['name'] ?? '',
                 business_name: $request['business_name'] ?? '',
                 address: $request['address'] ?? '',

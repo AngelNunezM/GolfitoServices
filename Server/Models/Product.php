@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class Product
 {
-    public ?string $id = null;
+    public ?UuidInterface $id = null;
     public string $name = '';
     public string $description = '';
     public float $stock_min = 0;
@@ -24,7 +25,7 @@ class Product
         bool $is_active = true,
         ?string $unit_id = null,
         ?string $area_id = null,
-        ?string $id = null,
+        ?UuidInterface $id = null,
         ?string $unit_name = null,
         ?string $area_name = null
     ) {
@@ -48,7 +49,7 @@ class Product
         bool $is_active = true
     ): Product {
         return new Product(
-            id: Uuid::uuid4()->toString(),
+            id: Uuid::uuid4(),
             name: trim($name),
             description: trim($description),
             stock_min: $stock_min,

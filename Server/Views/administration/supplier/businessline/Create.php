@@ -12,7 +12,12 @@
             </svg>
             <span>Volver atras</span>
         </a>
-        <form class="flex flex-col gap-4">
+        <?php if (!empty($error ?? '')): ?>
+            <div class="rounded-lg border border-red-500 bg-red-500/10 p-3 text-sm text-red-200">
+                <?= htmlspecialchars($error) ?>
+            </div>
+        <?php endif; ?>
+        <form action="/category-suppliers" method="POST" class="flex flex-col gap-4">
             <div class="flex flex-col gap-4 border-2 border-dashed border-cyan-700 rounded-lg p-5">
                 <div class="flex flex-row items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
