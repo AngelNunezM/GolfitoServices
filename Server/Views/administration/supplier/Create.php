@@ -17,7 +17,7 @@
                 <?= htmlspecialchars($error) ?>
             </div>
         <?php endif; ?>
-        <form class="flex flex-col gap-4">
+        <form action="/suppliers" method="POST" class="flex flex-col gap-4">
             <div class="flex flex-col gap-4 border-2 border-dashed border-cyan-700 rounded-lg p-5">
                 <div class="flex flex-row items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -93,37 +93,37 @@
                     <div class="flex justify-between items-center bg-bprincipal-light p-2 px-4 rounded-lg">
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="lunes">L</label>
-                            <input id="lunes" type="checkbox" value="LUNES" />
+                            <input name="pedido[]" id="lunes" type="checkbox" value="LUNES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="martes">M</label>
-                            <input id="martes" type="checkbox" value="MARTES" />
+                            <input name="pedido[]" id="martes" type="checkbox" value="MARTES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="miercoles">X</label>
-                            <input id="miercoles" type="checkbox" value="MIERCOLES" />
+                            <input name="pedido[]" id="miercoles" type="checkbox" value="MIERCOLES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="jueves">J</label>
-                            <input id="jueves" type="checkbox" value="JUEVES" />
+                            <input name="pedido[]" id="jueves" type="checkbox" value="JUEVES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="viernes">V</label>
-                            <input id="viernes" type="checkbox" value="VIERNES" />
+                            <input name="pedido[]" id="viernes" type="checkbox" value="VIERNES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="sabado">S</label>
-                            <input id="sabado" type="checkbox" value="SABADO" />
+                            <input name="pedido[]" id="sabado" type="checkbox" value="SABADO" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="domingo">D</label>
-                            <input id="domingo" type="checkbox" value="DOMINGO" />
+                            <input name="pedido[]" id="domingo" type="checkbox" value="DOMINGO" />
                         </div>
                     </div>
                 </div>
@@ -133,37 +133,37 @@
                     <div class="flex justify-between items-center bg-bprincipal-light p-2 px-4 rounded-lg">
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="lunesE">L</label>
-                            <input id="lunesE" type="checkbox" value="LUNES" />
+                            <input name="entrega[]" id="lunesE" type="checkbox" value="LUNES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="martesE">M</label>
-                            <input id="martesE" type="checkbox" value="MARTES" />
+                            <input name="entrega[]" id="martesE" type="checkbox" value="MARTES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="miercolesE">X</label>
-                            <input id="miercolesE" type="checkbox" value="MIERCOLES" />
+                            <input name="entrega[]" id="miercolesE" type="checkbox" value="MIERCOLES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="juevesE">J</label>
-                            <input id="juevesE" type="checkbox" value="JUEVES" />
+                            <input name="entrega[]" id="juevesE" type="checkbox" value="JUEVES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="viernesE">V</label>
-                            <input id="viernesE" type="checkbox" value="VIERNES" />
+                            <input name="entrega[]" id="viernesE" type="checkbox" value="VIERNES" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="sabadoE">S</label>
-                            <input id="sabadoE" type="checkbox" value="SABADO" />
+                            <input name="entrega[]" id="sabadoE" type="checkbox" value="SABADO" />
                         </div>
 
                         <div class="flex flex-col items-center justify-center gap-1">
                             <label for="domingoE">D</label>
-                            <input id="domingoE" type="checkbox" value="DOMINGO" />
+                            <input id="entrega[]" type="checkbox" value="DOMINGO" />
                         </div>
                     </div>
                 </div>

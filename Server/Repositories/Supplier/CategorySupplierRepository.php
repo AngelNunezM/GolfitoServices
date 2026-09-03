@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Supplier;
 
+use Ramsey\Uuid\Uuid;
 use App\Config\ContextDB;
 use App\Models\Supplier\CategorySupplier;
 use PDO;
@@ -28,7 +29,7 @@ class CategorySupplierRepository
 
         return array_map(function (array $row): CategorySupplier {
             return new CategorySupplier(
-                id: $row['id'],
+                id: Uuid::fromString($row['id']),
                 name: $row['name']
             );
         }, $rows);

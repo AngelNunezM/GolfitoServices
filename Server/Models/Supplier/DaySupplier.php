@@ -2,7 +2,6 @@
 
 namespace App\Models\Supplier;
 
-use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Exception;
 
@@ -25,7 +24,7 @@ class DaySupplier
 
     public static function create(string $day, UuidInterface $supplierId, string $typeDay): DaySupplier
     {
-        if (empty($day)) throw new Exception('El día del proveedor no puede estar vacío.');
+        if (empty($day)) throw new Exception('El día no puede estar vacío.');
         if (empty($supplierId)) throw new Exception('El ID del proveedor no puede estar vacío.');
         if (empty($typeDay)) throw new Exception('El tipo de día del proveedor no puede estar vacío.');
 

@@ -12,7 +12,7 @@ class Supplier
     public string $name = '';
     public string $business_name = '';
     public string $address = '';
-    public bool $is_active = true;
+    public ?bool $is_active = true;
     public ?string $method_payment_id = null;
     public ?string $category_supplier_id = null;
 
@@ -20,7 +20,7 @@ class Supplier
         string $name = '',
         string $business_name = '',
         string $address = '',
-        bool $is_active = true,
+        ?bool $is_active = true,
         ?string $method_payment_id = null,
         ?string $category_supplier_id = null,
         ?UuidInterface $id = null

@@ -2,6 +2,7 @@
 
 namespace App\Services\Supplier;
 
+use App\Models\Supplier\ContactSupplier;
 use App\Models\Supplier\Supplier;
 use App\Repositories\Supplier\SupplierRepository;
 use Exception;
@@ -31,7 +32,7 @@ class SupplierService
         return $supplier;
     }
 
-    public function createSupplier(Supplier $supplier): Supplier
+    public function createSupplier(Supplier $supplier, ContactSupplier $contact): Supplier
     {
         $exists = $this->supplierRepository->findBy('name', $supplier->name);
 

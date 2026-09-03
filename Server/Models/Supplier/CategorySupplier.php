@@ -8,12 +8,12 @@ use Exception;
 
 class CategorySupplier
 {
-    public ?UuidInterface $id;
-    public string $name;
+    public ?UuidInterface $id = null;
+    public string $name = '';
 
     public function __construct(
-        ?UuidInterface $id = null,
-        string $name = ''
+        ?UuidInterface $id,
+        string $name
     ) {
         $this->id = $id;
         $this->name = $name;

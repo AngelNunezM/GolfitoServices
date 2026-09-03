@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Ramsey\Uuid\Uuid;
 use App\Config\ContextDB;
 use App\Models\PaymentMethod;
 use PDO;
@@ -27,7 +28,7 @@ class PaymentMethodRepository
         
         return array_map(function ($item) {
             return new PaymentMethod(
-                id: $item['id'],
+                id: Uuid::fromString($item['id']),
                 name: $item['name']
             );
         }, $result);

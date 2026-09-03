@@ -9,6 +9,7 @@ use App\Services\Supplier\SupplierService;
 use App\Services\Supplier\CategorySupplierService;
 use App\Services\PaymentMethodService;
 use App\Core\Helpers\HTTP;
+use App\Models\Supplier\ContactSupplier;
 use Exception;
 use Ramsey\Uuid\Uuid;
 
@@ -63,7 +64,13 @@ class SupplierController
                 category_supplier_id: $request['category_supplier_id'] ?? null,
             );
 
-            $this->supplierService->createSupplier($supplier);
+            $contact = ContactSupplier::create(
+                name: $request['name_contact'],
+                email: $request['email'],
+                phone_number: $request['phone_number']
+            );
+
+            $this->supplierService->createSupplier($supplier, $contact);
             $this->redirect('/administracion/proveedores');
 
         } catch (Exception $e) {
