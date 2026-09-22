@@ -8,6 +8,7 @@ use App\Core\View;
 use App\Models\User;
 use App\Services\UserService;
 use Exception;
+use Ramsey\Uuid\Uuid;
 
 class UserController {
 
@@ -46,9 +47,9 @@ class UserController {
         }
     }
 
-    public function create(): void
+    public function store(): void
     {
-        Authentication::verify();
+        //Authentication::verify();
         $request = $this->request();
 
         try {
@@ -57,7 +58,7 @@ class UserController {
                 username: $request['username'],
                 password: $request['password'] ?? '',
                 phone: $request['phone'],
-                role_id: $request['role_id']
+                role_id: Uuid::fromString($request['role_id'])
             );
 
             $isUserCreated = $this->userService->createUser($user);
@@ -81,7 +82,7 @@ class UserController {
         }
     }
 
-    public function update(string $userId)
+    public function update(Uuid $userId)
     {
         $request = $this->request();
 

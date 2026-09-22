@@ -3,7 +3,7 @@
         'name' => 'angelnunezm/nanophp',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '2bf792e38c02aa287c5131e8a3e70225697e91a2',
+        'reference' => '9bce118ce5365a687838dbc220401dc6380e67c3',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'angelnunezm/nanophp' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '2bf792e38c02aa287c5131e8a3e70225697e91a2',
+            'reference' => '9bce118ce5365a687838dbc220401dc6380e67c3',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

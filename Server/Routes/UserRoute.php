@@ -7,4 +7,4 @@ use App\Controllers\UserController;
 
 /** @var Router $router */
 
-$router->post('/usuarios', UserController::class, 'create');
+$router->post('/usuarios', UserController::class, 'store');
