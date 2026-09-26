@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class PaymentMethod

@@ -31,6 +31,7 @@ CREATE TABLE users(
     password_hash VARCHAR(255) NOT NULL,
     phone_number VARCHAR(20) UNIQUE,
     is_active BOOLEAN DEFAULT TRUE,
+    area_id CHAR(36) NULL,
 
     role_id CHAR(36) NOT NULL,
     FOREIGN KEY (role_id) REFERENCES roles(id),
@@ -97,8 +98,8 @@ CREATE TABLE units(
 
 CREATE TABLE areas (
     id CHAR(36) PRIMARY KEY NOT NULL,
-    nombre VARCHAR(100) NOT NULL,
-    activo BOOLEAN NOT NULL DEFAULT TRUE
+    name VARCHAR(100) NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE products(
@@ -111,11 +112,18 @@ CREATE TABLE products(
     unit_id CHAR(36) NOT NULL,
     FOREIGN KEY (unit_id) REFERENCES units(id),
 
-    area_id CHAR(36) NOT NULL,
-    FOREIGN KEY (area_id) REFERENCES areas(id),
-
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE product_areas (
+    product_id CHAR(36) NOT NULL,
+    area_id CHAR(36) NOT NULL,
+
+    PRIMARY KEY (product_id, area_id),
+
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (area_id) REFERENCES areas(id)
 );
 
 CREATE TABLE product_suppliers(
@@ -143,8 +151,9 @@ CREATE TABLE supply_orders(
         'BORRADOR',
         'GENERADO',
         'ENVIADO',
-        'COMPLETADO',
-        'CANCELADO'
+        'RECIBIDO',
+        'CANCELADO',
+        'INCOMPLETO'
     ) NOT NULL DEFAULT 'BORRADOR',
 
     observations TEXT,
@@ -157,8 +166,9 @@ CREATE TABLE supply_order_details(
     id CHAR(36) PRIMARY KEY NOT NULL,
     supply_order_id CHAR(36) NOT NULL,
     product_id CHAR(36) NOT NULL,
-    quantity INT NOT NULL,
+    quantity DECIMAL(10, 3) NOT NULL,
     unit_id CHAR(36) NOT NULL,
+    unit_price DECIMAL(10, 2) NOT NULL,
 
     FOREIGN KEY (supply_order_id) REFERENCES supply_orders(id),
     FOREIGN KEY (product_id) REFERENCES products(id),
@@ -183,7 +193,8 @@ CREATE TABLE purchase_orders(
         'BORRADOR',
         'GENERADO',
         'ENVIADO',
-        'COMPLETADO',
+        'RECIBIDO',
+        'INCOMPLETO',
         'CANCELADO'
     ) NOT NULL DEFAULT 'BORRADOR',
 
@@ -197,15 +208,42 @@ CREATE TABLE purchase_order_details(
     id CHAR(36) PRIMARY KEY NOT NULL,
     purchase_order_id CHAR(36) NOT NULL,
     product_id CHAR(36) NOT NULL,
-    quantity INT NOT NULL,
-    unit_id CHAR(36) NOT NULL,
+    quantity DECIMAL(10, 3) NOT NULL,
+    quantity_received DECIMAL(10, 3) DEFAULT 0,
 
     FOREIGN KEY (purchase_order_id) REFERENCES purchase_orders(id),
     FOREIGN KEY (product_id) REFERENCES products(id),
-    FOREIGN KEY (unit_id) REFERENCES units(id),
-
+    
     UNIQUE KEY unique_purchase_order_detail (purchase_order_id, product_id),
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE purchase(
+    id CHAR(36) PRIMARY KEY NOT NULL,
+    purchase_order_id CHAR(36) NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    paid_date TIMESTAMP NOT NULL,
+
+    FOREIGN KEY (purchase_order_id) REFERENCES purchase_orders(id),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE accounts_payable(
+    id CHAR(36) PRIMARY KEY NOT NULL,
+    purchase_id CHAR(36) NOT NULL,
+    paid_date TIMESTAMP NOT NULL,
+    balance DECIMAL(10, 2) NOT NULL,
+    paid_amount DECIMAL(10, 2) NOT NULL,
+    is_paid BOOLEAN DEFAULT FALSE,
+
+    FOREIGN KEY (purchase_id) REFERENCES purchase(id),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE users
+ADD CONSTRAINT fk_users_area
+FOREIGN KEY (area_id) REFERENCES areas(id);
